@@ -1,0 +1,30 @@
+[project]
+name = "ai-gold-market-prediction-backend"
+version = "0.1.0"
+description = "Backend for AI-powered XAUUSD market prediction"
+readme = "README.md"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    "matplotlib>=3.11.2",
+    "numpy>=2.5.4",
+    "pandas>=3.0.6",
+    "scikit-learn>=1.9.1",
+    "xgboost>=3.4.1",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "ruff>=0.17.1",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
