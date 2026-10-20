@@ -5,6 +5,7 @@ description = "Backend for AI-powered XAUUSD market prediction"
 readme = "README.md"
 requires-python = ">=3.13,<3.14"
 dependencies = [
+    "fastapi[standard]>=0.154.0",
     "matplotlib>=3.11.2",
     "numpy>=2.5.4",
     "pandas>=3.0.6",
