@@ -7,10 +7,7 @@ import pandas as pd
 import yfinance as yf
 
 
-def download_xauusd(
-        start: str = "2020-01-01",
-        end: str | None = None
-) -> pd.DataFrame:
+def download_xauusd(start: str = "2020-01-01", end: str | None = None) -> pd.DataFrame:
     """Download historical XAUUSD data and normalize its columns."""
     raw = yf.dowload(
         "XAUUSD=X",
@@ -38,7 +35,7 @@ def download_xauusd(
     if data.columns.duplicated().any():
         raise ValueError("Downloaded data contains duplicate column names.")
 
-     # Step 3 will provide the shared OHLC validation function.
+    # Step 3 will provide the shared OHLC validation function.
     from gold_pipeline.validation import validate_ohlc
 
     return validate_ohlc(data)
@@ -46,9 +43,7 @@ def download_xauusd(
 
 def main() -> None:
     """Download XAUUSD data and write it to a CSV file."""
-    parser = argparse.ArgumentParser(
-        description="Download historical XAUUSD market data."
-    )
+    parser = argparse.ArgumentParser(description="Download historical XAUUSD market data.")
     parser.add_argument("--start", default="2020-01-01")
     parser.add_argument(
         "--end",
