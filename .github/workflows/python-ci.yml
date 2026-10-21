@@ -18,13 +18,12 @@ concurrency:
   group: data-pipeline-${{ github.ref }}
   cancel-in-progress: true
 
-defaults:
-  run:
-    working-directory: backend/data_pipeline
-
 jobs:
   lint-and-test:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend/data_pipeline
     strategy:
       fail-fast: false
       matrix:
