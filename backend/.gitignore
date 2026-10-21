@@ -39,3 +39,6 @@ dist/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Generated market data
+data_pipeline/data/

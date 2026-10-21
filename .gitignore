@@ -65,3 +65,6 @@ Thumbs.db
 *.tmp
 *.swp
 *.swo
+
+# Generated market data
+backend/data_pipeline/data/
