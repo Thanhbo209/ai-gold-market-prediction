@@ -18,7 +18,11 @@ dev = [
     "pytest>=8.3,<9.0",
     "ruff>=0.11,<1.0",
 ]
-
+ml = [
+    "scikit-learn",
+    "xgboost",
+    "joblib",
+]
 [tool.setuptools.packages.find]
 where = ["src"]
 
