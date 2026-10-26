@@ -17,7 +17,7 @@ def test_regression_metrics_calculate_expected_values():
 
     assert result["mae"] == pytest.approx(0.1)
     assert result["rmse"] == pytest.approx((0.03 / 3) ** 0.5)
-    assert result["directional_accuracy"] == pytest.approx(2/3)
+    assert result["directional_accuracy"] == pytest.approx(2 / 3)
 
 
 def test_regression_metrics_reject_empty_input():
