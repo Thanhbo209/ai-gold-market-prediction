@@ -49,6 +49,11 @@ def test_experiment_returns_metrics_and_chronological_counts():
         < result["date_ranges"]["validation_start"]
         < result["date_ranges"]["test_start"]
     )
+    if result["selected_model"] == "direction_persistence":
+        assert result["selected_estimator"] is None
+    else:
+        assert result["selected_estimator"] is not None
+        assert callable(result["selected_estimator"].predict)
 
 
 def test_experiment_rejects_invalid_split_boundaries():
