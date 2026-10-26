@@ -10,7 +10,7 @@ def save_experiment_artifact(
     artifact_dir: str | Path,
     *,
     data_source: str = "GC=F",
-) -> Path:
+) -> dict[str, Path]:
     """Save the selected experiment model and its evaluation metadata."""
     selected_model = experiment_result.get("selected_model")
     estimator = experiment_result.get("selected_estimator")

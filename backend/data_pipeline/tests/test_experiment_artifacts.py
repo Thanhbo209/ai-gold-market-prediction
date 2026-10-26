@@ -182,3 +182,20 @@ def test_rejects_non_json_serializable_metadata(
         )
 
     assert not (tmp_path / "model" / "metadata.json").exists()
+
+
+def test_saved_metadata_preserves_feature_column_order(
+    tmp_path,
+    experiment_result,
+):
+    feature_columns = ["volatility_5", "return_1"]
+
+    save_experiment_artifact(
+        experiment_result,
+        feature_columns,
+        tmp_path / "model",
+    )
+
+    _, metadata = load_model_artifact(tmp_path / "model")
+
+    assert metadata["feature_columns"] == feature_columns
