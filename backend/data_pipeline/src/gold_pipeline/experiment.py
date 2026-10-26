@@ -104,6 +104,8 @@ def run_experiment(
         zero_return_predictions,
     )
 
+    selected_estimator = selected_models.get(selected_name)
+
     return {
         "row_counts": {
             "train": len(train),
@@ -112,6 +114,7 @@ def run_experiment(
         },
         "validation_metrics": validation_metrics,
         "selected_model": selected_name,
+        "selected_estimator": selected_estimator,
         "test_classification_metrics": test_classification_metrics,
         "test_zero_return_metrics": test_return_metrics,
         "xgboost_best_iteration": int(xgboost_model.best_iteration),
