@@ -59,9 +59,8 @@ def test_missing_prediction_file_returns_503():
 
     assert response.status_code == 503
     assert response.json() == {
-        "detail": "Prediction is temporarily unavailable because required data or model artifacts" \
+        "detail": "Prediction is temporarily unavailable because required data or model artifacts"
         "are missing."
-
     }
     assert "private/path" not in response.text
 
