@@ -9,6 +9,7 @@ from sqlalchemy import (
     Index,
     Integer,
     String,
+    UniqueConstraint,
     func,
 )
 from sqlalchemy.orm import Mapped, mapped_column
@@ -26,6 +27,12 @@ class Prediction(Base):
             name="ck_predictions_direction",
         ),
         Index("ix_predictions_prediction_date", "prediction_date"),
+        UniqueConstraint(
+            "prediction_date",
+            "data_source",
+            "model_name",
+            name="uq_predictions_date_source_model",
+        ),
     )
 
     id: Mapped[int] = mapped_column(primary_key=True)
