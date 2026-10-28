@@ -18,4 +18,4 @@ def test_openapi_schema_is_available():
     assert response.status_code == 200
 
     schema = response.json()
-    assert schema["info"]["title"] == "Gold Market Prediction API"
+    assert schema["info"]["title"] == "AI Gold Market Prediction API"
