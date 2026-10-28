@@ -18,6 +18,7 @@ class PredictionResponse(BaseModel):
             raise ValueError("predicted_direction must be 0 or 1")
         return value
 
+
 class PredictionHistoryResponse(BaseModel):
     """Paginated response containing historical predictions."""
 

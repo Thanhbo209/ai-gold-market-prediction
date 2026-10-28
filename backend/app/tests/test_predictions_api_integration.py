@@ -1,4 +1,3 @@
-
 """Integration tests for the predictions API."""
 
 from datetime import date
@@ -31,9 +30,7 @@ def api_test_db():
 
     # Fail closed: never run destructive test cleanup against another database.
     if parsed_url.database != "gold_prediction_test":
-        pytest.fail(
-            "TEST_DATABASE_URL must target the dedicated 'gold_prediction_test' database."
-        )
+        pytest.fail("TEST_DATABASE_URL must target the dedicated 'gold_prediction_test' database.")
 
     engine = create_engine(database_url)
     schema_created = False
@@ -67,7 +64,6 @@ def api_test_db():
                 Base.metadata.drop_all(engine)
         finally:
             engine.dispose()
-
 
 
 @pytest.fixture
@@ -111,9 +107,7 @@ def test_latest_prediction_returns_and_persists_record(
             select(func.count())
             .select_from(Prediction)
             .where(
-                Prediction.prediction_date == date.fromisoformat(
-                    generated_prediction["date"]
-                ),
+                Prediction.prediction_date == date.fromisoformat(generated_prediction["date"]),
                 Prediction.data_source == generated_prediction["data_source"],
                 Prediction.model_name == generated_prediction["selected_model"],
             )
@@ -140,9 +134,7 @@ def test_repeated_requests_do_not_create_duplicates(
             select(func.count())
             .select_from(Prediction)
             .where(
-                Prediction.prediction_date == date.fromisoformat(
-                    generated_prediction["date"]
-                ),
+                Prediction.prediction_date == date.fromisoformat(generated_prediction["date"]),
                 Prediction.data_source == generated_prediction["data_source"],
                 Prediction.model_name == generated_prediction["selected_model"],
             )
@@ -190,9 +182,8 @@ def test_invalid_prediction_output_returns_500(
     response = client.get("/predictions/latest")
 
     assert response.status_code == 500
-    assert response.json()["detail"] == (
-        "The prediction could not be generated."
-    )
+    assert response.json()["detail"] == ("The prediction could not be generated.")
+
 
 def test_database_failure_returns_500(
     api_test_db,
@@ -216,7 +207,7 @@ def test_database_failure_returns_500(
     assert response.json()["detail"] == "The prediction could not be saved."
     assert "simulated database failure" not in response.text
 
-    
+
 def test_prediction_history_returns_empty_page(api_test_db):
     client, _ = api_test_db
 
@@ -263,7 +254,6 @@ def test_prediction_history_returns_persisted_records(
         "?start_date=2026-10-29&end_date=2026-10-01",
     ],
 )
-
 def test_prediction_history_rejects_invalid_query_parameters(api_test_db, query):
     client, _ = api_test_db
 

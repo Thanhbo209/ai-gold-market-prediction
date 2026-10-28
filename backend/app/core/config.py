@@ -1,4 +1,3 @@
-
 """Application configuration loaded from environment variables."""
 
 from pydantic import model_validator
@@ -24,9 +23,7 @@ class Settings(BaseSettings):
         """Validate database configuration for the current environment."""
         if not self.database_url:
             if self.app_env != "development":
-                raise ValueError(
-                    "DATABASE_URL must be configured outside development."
-                )
+                raise ValueError("DATABASE_URL must be configured outside development.")
 
             self.database_url = (
                 "postgresql+psycopg://postgres:postgres@localhost:5432/gold_prediction"

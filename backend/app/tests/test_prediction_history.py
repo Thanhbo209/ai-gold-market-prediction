@@ -1,4 +1,3 @@
-
 """Integration tests for prediction history queries."""
 
 from datetime import date

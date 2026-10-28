@@ -1,4 +1,3 @@
-
 """Database queries for historical predictions."""
 
 from datetime import date
@@ -36,8 +35,7 @@ def get_prediction_history(
     total = db.scalar(count_statement) or 0
 
     records_statement = (
-        records_statement
-        .order_by(Prediction.prediction_date.desc(), Prediction.id.desc())
+        records_statement.order_by(Prediction.prediction_date.desc(), Prediction.id.desc())
         .offset(skip)
         .limit(limit)
     )
