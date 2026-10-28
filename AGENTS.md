@@ -87,3 +87,16 @@
 - Fix errors introduced by the change rather than suppressing them.
 - Review the diff for unsafe assertions, accidental `any`, duplicated types, and unrelated modifications.
 - Do not claim checks passed unless they were actually run.
+
+## Project Structure and Organization
+
+- Keep frontend code inside `frontend/` and backend code inside `backend/`.
+- Organize code by responsibility and feature; avoid placing all components, utilities, or business logic in a single directory.
+- Keep route/page files focused on routing and page composition. Extract reusable UI into `components/` and shared logic into appropriately named modules.
+- Keep shared types, API clients, configuration, and utilities in dedicated locations when they are reused.
+- Co-locate feature-specific components, types, and tests when doing so improves maintainability.
+- Separate presentation, data access, business logic, and external API communication where appropriate.
+- Avoid unnecessary folders, barrel files, wrapper components, and abstractions for code used only once.
+- Follow the conventions of the installed framework and existing project structure before introducing a new pattern.
+- Before creating or moving files, inspect the existing structure and explain significant organizational changes in the implementation summary.
+- Do not reorganize unrelated files as part of a feature implementation.

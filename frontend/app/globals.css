@@ -38,7 +38,7 @@
   --font-sans: Plus Jakarta Sans, sans-serif;
   --font-serif: Lora, serif;
   --font-mono: IBM Plex Mono, monospace;
-  --radius: 1.4rem;
+  --radius: 0rem;
   --shadow-x: 0px;
   --shadow-y: 2px;
   --shadow-blur: 3px;
@@ -60,6 +60,10 @@
   --shadow-2xl: 0px 2px 3px 0px hsl(0 0% 0% / 0.4);
   --tracking-normal: -0.025em;
   --spacing: 0.27rem;
+  --market-up: oklch(0.62 0.18 145);
+  --market-down: oklch(0.62 0.22 25);
+  --market-neutral: oklch(0.60 0 0);
+  --market-gold: oklch(0.78 0.15 85);
 }
 
 .dark {
@@ -98,7 +102,7 @@
   --font-sans: Plus Jakarta Sans, sans-serif;
   --font-serif: Lora, serif;
   --font-mono: IBM Plex Mono, monospace;
-  --radius: 1.4rem;
+  --radius: 0rem;
   --shadow-x: 0px;
   --shadow-y: 2px;
   --shadow-blur: 12px;
@@ -118,9 +122,17 @@
   --shadow-xl:
     0px 2px 12px 0px hsl(0 0% 0% / 0.35), 0px 8px 10px -1px hsl(0 0% 0% / 0.35);
   --shadow-2xl: 0px 2px 12px 0px hsl(0 0% 0% / 0.88);
+  --market-up: oklch(0.70 0.17 145);
+  --market-down: oklch(0.65 0.22 25);
+  --market-neutral: oklch(0.65 0 0);
+  --market-gold: oklch(0.78 0.15 85);
 }
 
 @theme inline {
+  --color-market-up: var(--market-up);
+  --color-market-down: var(--market-down);
+  --color-market-neutral: var(--market-neutral);
+  --color-market-gold: var(--market-gold);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -183,6 +195,7 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    border-radius: 0;
   }
   body {
     @apply bg-background text-foreground;
