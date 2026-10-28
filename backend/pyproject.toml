@@ -12,6 +12,7 @@ dependencies = [
     "pandas>=3.0.6",
     "scikit-learn>=1.9.1",
     "xgboost>=3.4.1",
+    "xauusd-data-pipeline",
 ]
 
 [dependency-groups]
@@ -31,3 +32,11 @@ target-version = "py313"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP"]
+
+[tool.uv.workspace]
+members = [
+    "data_pipeline",
+]
+
+[tool.uv.sources]
+xauusd-data-pipeline = { workspace = true, editable = true }
