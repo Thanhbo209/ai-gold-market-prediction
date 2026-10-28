@@ -59,7 +59,7 @@ def test_get_latest_prediction_raises_when_data_is_missing(mock_prediction, monk
 
 
 def test_get_latest_prediction_raises_when_artifacts_are_missing(
-    mock_prediction, monkeypatch, tmp_path
+    mock_prediction, prediction_csv, monkeypatch, tmp_path
 ):
     monkeypatch.setattr(prediction, "ARTIFACT_DIR", tmp_path / "missing")
 

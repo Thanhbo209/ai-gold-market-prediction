@@ -34,9 +34,15 @@ def mock_save_or_get_prediction(db, prediction_data):
 
 
 def test_get_latest_prediction_returns_prediction():
-    with patch(
-        "app.api.routes.predictions.get_latest_prediction",
-        return_value=PREDICTION,
+    with (
+        patch(
+            "app.api.routes.predictions.get_latest_prediction",
+            return_value=PREDICTION,
+        ),
+        patch(
+            "app.api.routes.predictions.save_or_get_prediction",
+            side_effect=mock_save_or_get_prediction,
+        ),
     ):
         response = client.get("/predictions/latest")
 
