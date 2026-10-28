@@ -6,6 +6,7 @@ from datetime import date
 import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine, func, select
+from sqlalchemy.engine import make_url
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import sessionmaker
 
@@ -18,38 +19,55 @@ from app.models.prediction import Prediction
 
 
 @pytest.fixture
-def api_test_db(monkeypatch):
-    """Create an isolated database schema for each API integration test."""
-    from os import environ
+def api_test_db():
+    """Provide an isolated schema on the dedicated PostgreSQL test database."""
+    import os
 
-    database_url = environ.get("TEST_DATABASE_URL")
+    database_url = os.getenv("TEST_DATABASE_URL")
     if not database_url:
         pytest.fail("Set TEST_DATABASE_URL to your dedicated PostgreSQL test database.")
 
+    parsed_url = make_url(database_url)
+
+    # Fail closed: never run destructive test cleanup against another database.
+    if parsed_url.database != "gold_prediction_test":
+        pytest.fail(
+            "TEST_DATABASE_URL must target the dedicated 'gold_prediction_test' database."
+        )
+
     engine = create_engine(database_url)
-    Base.metadata.create_all(engine)
+    schema_created = False
+    previous_overrides = app.dependency_overrides.copy()
 
-    TestingSessionLocal = sessionmaker(
-        bind=engine,
-        autoflush=False,
-        autocommit=False,
-    )
+    try:
+        Base.metadata.create_all(engine)
+        schema_created = True
 
-    def override_get_db():
-        db = TestingSessionLocal()
+        TestingSessionLocal = sessionmaker(
+            bind=engine,
+            autoflush=False,
+            expire_on_commit=False,
+        )
+
+        def override_get_db():
+            with TestingSessionLocal() as db:
+                yield db
+
+        app.dependency_overrides[get_db] = override_get_db
+
+        with TestClient(app) as client:
+            yield client, TestingSessionLocal
+
+    finally:
+        app.dependency_overrides.clear()
+        app.dependency_overrides.update(previous_overrides)
+
         try:
-            yield db
+            if schema_created:
+                Base.metadata.drop_all(engine)
         finally:
-            db.close()
+            engine.dispose()
 
-    app.dependency_overrides[get_db] = override_get_db
-
-    with TestClient(app) as client:
-        yield client, TestingSessionLocal
-
-    app.dependency_overrides.pop(get_db, None)
-    Base.metadata.drop_all(engine)
-    engine.dispose()
 
 
 @pytest.fixture
