@@ -1,3 +1,4 @@
+
 """Integration tests for the predictions API."""
 
 from datetime import date
@@ -5,6 +6,7 @@ from datetime import date
 import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine, func, select
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import sessionmaker
 
 # Import the route module so its functions can be monkeypatched.
@@ -91,7 +93,9 @@ def test_latest_prediction_returns_and_persists_record(
             select(func.count())
             .select_from(Prediction)
             .where(
-                Prediction.prediction_date == date.fromisoformat(generated_prediction["date"]),
+                Prediction.prediction_date == date.fromisoformat(
+                    generated_prediction["date"]
+                ),
                 Prediction.data_source == generated_prediction["data_source"],
                 Prediction.model_name == generated_prediction["selected_model"],
             )
@@ -118,7 +122,9 @@ def test_repeated_requests_do_not_create_duplicates(
             select(func.count())
             .select_from(Prediction)
             .where(
-                Prediction.prediction_date == date.fromisoformat(generated_prediction["date"]),
+                Prediction.prediction_date == date.fromisoformat(
+                    generated_prediction["date"]
+                ),
                 Prediction.data_source == generated_prediction["data_source"],
                 Prediction.model_name == generated_prediction["selected_model"],
             )
@@ -166,4 +172,83 @@ def test_invalid_prediction_output_returns_500(
     response = client.get("/predictions/latest")
 
     assert response.status_code == 500
-    assert response.json()["detail"] == ("The prediction could not be generated.")
+    assert response.json()["detail"] == (
+        "The prediction could not be generated."
+    )
+
+def test_database_failure_returns_500(
+    api_test_db,
+    generated_prediction,
+    monkeypatch,
+):
+    client, _ = api_test_db
+
+    def raise_database_error(db, prediction_data):
+        raise SQLAlchemyError("simulated database failure")
+
+    monkeypatch.setattr(
+        predictions_route,
+        "save_or_get_prediction",
+        raise_database_error,
+    )
+
+    response = client.get("/predictions/latest")
+
+    assert response.status_code == 500
+    assert response.json()["detail"] == "The prediction could not be saved."
+    assert "simulated database failure" not in response.text
+
+    
+def test_prediction_history_returns_empty_page(api_test_db):
+    client, _ = api_test_db
+
+    response = client.get("/predictions")
+
+    assert response.status_code == 200
+    assert response.json() == {
+        "items": [],
+        "total": 0,
+        "skip": 0,
+        "limit": 20,
+    }
+
+
+def test_prediction_history_returns_persisted_records(
+    api_test_db,
+    generated_prediction,
+):
+    client, _ = api_test_db
+
+    # Create a record through the existing latest endpoint.
+    latest_response = client.get("/predictions/latest")
+    assert latest_response.status_code == 200
+
+    response = client.get("/predictions")
+
+    assert response.status_code == 200
+    body = response.json()
+
+    assert body["total"] == 1
+    assert body["skip"] == 0
+    assert body["limit"] == 20
+    assert len(body["items"]) == 1
+    assert body["items"][0]["date"] == generated_prediction["date"]
+    assert body["items"][0]["selected_model"] == generated_prediction["selected_model"]
+
+
+@pytest.mark.parametrize(
+    "query",
+    [
+        "?skip=-1",
+        "?limit=0",
+        "?limit=101",
+        "?start_date=2026-10-29&end_date=2026-10-01",
+    ],
+)
+
+def test_prediction_history_rejects_invalid_query_parameters(api_test_db, query):
+    client, _ = api_test_db
+
+    response = client.get(f"/predictions{query}")
+
+    assert response.status_code == 422
