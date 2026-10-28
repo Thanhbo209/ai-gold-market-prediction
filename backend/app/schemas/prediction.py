@@ -1,4 +1,3 @@
-
 """Response schemas for gold price predictions."""
 
 from typing import Literal

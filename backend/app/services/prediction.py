@@ -1,4 +1,5 @@
 """Service for generating the latest gold direction prediction."""
+
 from pathlib import Path
 
 import pandas as pd
