@@ -1,13 +1,11 @@
 // Typed API client for prediction endpoints
-import { api, ApiError } from "./api";
 import {
-  PredictionResponseSchema,
-  PredictionHistoryResponseSchema,
-} from "../types/api";
-import type {
-  PredictionResponse,
   PredictionHistoryResponse,
-} from "../types/api";
+  PredictionHistoryResponseSchema,
+  PredictionResponse,
+  PredictionResponseSchema,
+} from "@/types/api";
+import { api, ApiError } from "./api";
 
 /**
  * Fetch the latest prediction.

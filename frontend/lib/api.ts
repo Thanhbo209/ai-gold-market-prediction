@@ -7,9 +7,10 @@ export const api = async (
 ): Promise<Response> => {
   const url = typeof input === "string" ? `${BASE_URL}${input}` : input;
   const response = await fetch(url, {
-  
     ...init,
   });
+
+  // response.ok is true when the HTTP status is between 200 and 299.
   if (!response.ok) {
     const errorBody = await response.text().catch(() => "");
     throw new ApiError(response.status, response.statusText, errorBody);

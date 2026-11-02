@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
+import { ModeToggle } from "../ui/theme-toggle";
 
 export interface AppHeaderProps {
   readonly marketStatus?: "open" | "closed" | "standby";
@@ -73,6 +74,7 @@ export function AppHeader({
 
         {/* Right: Operational Info */}
         <div className="flex items-center gap-3 text-xs text-muted-foreground">
+          <ModeToggle />
           <span className="hidden lg:inline tabular-nums">UTC 24H Feed</span>
           <span className="border-l border-border/80 pl-3 text-[11px] uppercase tracking-wider text-muted-foreground/80">
             Ready
