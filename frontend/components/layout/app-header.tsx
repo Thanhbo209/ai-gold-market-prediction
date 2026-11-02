@@ -26,14 +26,14 @@ export function AppHeader({
             href="/"
             className="flex items-center gap-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
           >
-            <div className="h-5 w-5 bg-foreground text-background flex items-center justify-center font-mono font-bold text-xs select-none">
+            <div className="h-5 w-5 bg-foreground text-background flex items-center justify-center font-bold text-xs select-none">
               AU
             </div>
             <div className="flex flex-col">
               <span className="font-semibold text-sm tracking-tight text-foreground leading-none">
                 AI GOLD PREDICTOR
               </span>
-              <span className="text-[10px] font-mono tracking-widest text-muted-foreground uppercase leading-none mt-1">
+              <span className="text-[10px] tracking-widest text-muted-foreground uppercase leading-none mt-1">
                 XAU/USD Intelligence
               </span>
             </div>
@@ -72,7 +72,7 @@ export function AppHeader({
         </nav>
 
         {/* Right: Operational Info */}
-        <div className="flex items-center gap-3 text-xs font-mono text-muted-foreground">
+        <div className="flex items-center gap-3 text-xs text-muted-foreground">
           <span className="hidden lg:inline tabular-nums">UTC 24H Feed</span>
           <span className="border-l border-border/80 pl-3 text-[11px] uppercase tracking-wider text-muted-foreground/80">
             Ready
@@ -91,7 +91,7 @@ export function AppHeader({
             <Link
               key={link.href}
               href={link.href}
-              className={`px-2.5 py-1 text-[11px] font-mono uppercase tracking-wider whitespace-nowrap transition-colors border ${
+              className={`px-2.5 py-1 text-[11px] uppercase tracking-wider whitespace-nowrap transition-colors border ${
                 isActive
                   ? "border-border bg-secondary text-foreground font-semibold"
                   : "border-transparent text-muted-foreground hover:text-foreground hover:border-border/60"

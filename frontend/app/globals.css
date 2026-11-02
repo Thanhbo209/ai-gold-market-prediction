@@ -35,7 +35,7 @@
   --sidebar-accent-foreground: oklch(0 0 0);
   --sidebar-border: oklch(0.9401 0 0);
   --sidebar-ring: oklch(0 0 0);
-  --font-sans: Plus Jakarta Sans, sans-serif;
+  --font-sans: var(--font-alan-sans);
   --font-serif: Lora, serif;
   --font-mono: IBM Plex Mono, monospace;
   --radius: 0rem;
@@ -62,7 +62,7 @@
   --spacing: 0.27rem;
   --market-up: oklch(0.62 0.18 145);
   --market-down: oklch(0.62 0.22 25);
-  --market-neutral: oklch(0.60 0 0);
+  --market-neutral: oklch(0.6 0 0);
   --market-gold: oklch(0.78 0.15 85);
 }
 
@@ -99,7 +99,7 @@
   --sidebar-accent-foreground: oklch(0.7501 0.1501 85.1456);
   --sidebar-border: oklch(0.2513 0.02 80.2775);
   --sidebar-ring: oklch(0.7501 0.1501 85.1456);
-  --font-sans: Plus Jakarta Sans, sans-serif;
+  --font-sans: var(--font-alan-sans);
   --font-serif: Lora, serif;
   --font-mono: IBM Plex Mono, monospace;
   --radius: 0rem;
@@ -122,7 +122,7 @@
   --shadow-xl:
     0px 2px 12px 0px hsl(0 0% 0% / 0.35), 0px 8px 10px -1px hsl(0 0% 0% / 0.35);
   --shadow-2xl: 0px 2px 12px 0px hsl(0 0% 0% / 0.88);
-  --market-up: oklch(0.70 0.17 145);
+  --market-up: oklch(0.7 0.17 145);
   --market-down: oklch(0.65 0.22 25);
   --market-neutral: oklch(0.65 0 0);
   --market-gold: oklch(0.78 0.15 85);
@@ -166,9 +166,7 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
-  --font-serif: var(--font-serif);
+  --font-sans: var(--font-alan-sans);
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

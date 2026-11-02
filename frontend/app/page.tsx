@@ -54,18 +54,20 @@ export default function DashboardPage(): React.JSX.Element {
       {/* Page Title & Context Header */}
       <div className="mb-6 pb-4 border-b border-border/80 flex flex-col md:flex-row md:items-end justify-between gap-3">
         <div>
-          <div className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
+          <div className="text-[11px] uppercase tracking-widest text-muted-foreground">
             Market Intelligence Platform
           </div>
           <h1 className={TYPOGRAPHY.pageTitle}>AI Gold Market Prediction</h1>
           <p className={TYPOGRAPHY.pageSubtitle}>
-            Real-time quantitative forecasting, macroeconomic feature attribution, and trend
-            prediction
+            Real-time quantitative forecasting, macroeconomic feature
+            attribution, and trend prediction
           </p>
         </div>
-        <div className="text-xs font-mono text-muted-foreground flex items-center gap-2">
+        <div className="text-xs text-muted-foreground flex items-center gap-2">
           <span>Engine Status:</span>
-          <span className="text-market-up font-semibold uppercase">Initialized</span>
+          <span className="text-market-up font-semibold uppercase">
+            Initialized
+          </span>
         </div>
       </div>
 

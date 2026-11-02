@@ -18,12 +18,14 @@ export function MarketStatusBar({
   return (
     <section
       aria-label="System and Market Status"
-      className="border border-border bg-card p-3 md:p-4 mb-6 flex flex-wrap items-center justify-between gap-4 text-xs font-mono"
+      className="border border-border bg-card p-3 md:p-4 mb-6 flex flex-wrap items-center justify-between gap-4 text-xs"
     >
       {/* Left Details */}
       <div className="flex flex-wrap items-center gap-4 sm:gap-6">
         <div className="flex items-center gap-2">
-          <span className="text-muted-foreground uppercase tracking-wider">Feed:</span>
+          <span className="text-muted-foreground uppercase tracking-wider">
+            Feed:
+          </span>
           <Badge
             tone={
               status.marketState === "open"
@@ -38,12 +40,18 @@ export function MarketStatusBar({
         </div>
 
         <div className="flex items-center gap-2">
-          <span className="text-muted-foreground uppercase tracking-wider">Pipeline:</span>
-          <span className="text-foreground font-semibold uppercase">{status.pipelineStatus}</span>
+          <span className="text-muted-foreground uppercase tracking-wider">
+            Pipeline:
+          </span>
+          <span className="text-foreground font-semibold uppercase">
+            {status.pipelineStatus}
+          </span>
         </div>
 
         <div className="flex items-center gap-2">
-          <span className="text-muted-foreground uppercase tracking-wider">Active Model:</span>
+          <span className="text-muted-foreground uppercase tracking-wider">
+            Active Model:
+          </span>
           <span className="text-foreground">{status.activeModelVersion}</span>
         </div>
       </div>

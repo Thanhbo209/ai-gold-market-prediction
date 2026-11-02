@@ -27,7 +27,7 @@ export function AppSidebar({
       {/* Navigation Group */}
       <div className="p-4 space-y-6">
         <div>
-          <div className="px-2 pb-2 text-[11px] font-mono uppercase tracking-widest text-muted-foreground/80">
+          <div className="px-2 pb-2 text-[11px] uppercase tracking-widest text-muted-foreground/80">
             Navigation
           </div>
           <nav className="flex flex-col gap-0.5">
@@ -46,7 +46,7 @@ export function AppSidebar({
                 >
                   <span>{item.label}</span>
                   {item.badge && (
-                    <span className="text-[10px] font-mono px-1 py-0.2 bg-muted text-muted-foreground border border-border">
+                    <span className="text-[10px] px-1 py-0.2 bg-muted text-muted-foreground border border-border">
                       {item.badge}
                     </span>
                   )}
@@ -58,10 +58,10 @@ export function AppSidebar({
 
         {/* System Specs Box */}
         <div className="border border-sidebar-border p-3 space-y-2 bg-background/50">
-          <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+          <div className="text-[10px] uppercase tracking-widest text-muted-foreground">
             Environment
           </div>
-          <div className="space-y-1 text-xs font-mono">
+          <div className="space-y-1 text-xs">
             <div className="flex justify-between text-muted-foreground">
               <span>Target Asset:</span>
               <span className="text-foreground font-semibold">XAU/USD</span>
@@ -79,7 +79,7 @@ export function AppSidebar({
       </div>
 
       {/* Footer Info */}
-      <div className="mt-auto p-4 border-t border-sidebar-border text-[11px] font-mono text-muted-foreground">
+      <div className="mt-auto p-4 border-t border-sidebar-border text-[11px] text-muted-foreground">
         <div>v0.1.0-alpha</div>
         <div className="text-[10px] text-muted-foreground/70 mt-0.5">
           Sharp-edge Design System

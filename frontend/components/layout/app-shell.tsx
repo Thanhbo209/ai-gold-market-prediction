@@ -11,7 +11,7 @@ export function AppShell({ children }: AppShellProps): React.JSX.Element {
     <div className="min-h-screen flex flex-col bg-background text-foreground antialiased selection:bg-foreground selection:text-background">
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-3 focus:py-1.5 focus:bg-foreground focus:text-background focus:font-mono focus:text-xs focus:border focus:border-border"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-3 focus:py-1.5 focus:bg-foreground focus:text-background focus:text-xs focus:border focus:border-border"
       >
         Skip to main content
       </a>

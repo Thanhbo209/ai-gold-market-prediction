@@ -15,10 +15,12 @@ export function MetricCard({ slot }: MetricCardProps): React.JSX.Element {
         <div>
           <span className={TYPOGRAPHY.metricLabel}>{slot.title}</span>
           {slot.description && (
-            <p className="text-[11px] text-muted-foreground mt-0.5">{slot.description}</p>
+            <p className="text-[11px] text-muted-foreground mt-0.5">
+              {slot.description}
+            </p>
           )}
         </div>
-        <span className="text-[10px] font-mono px-1.5 py-0.5 bg-muted text-muted-foreground border border-border uppercase">
+        <span className="text-[10px]  px-1.5 py-0.5 bg-muted text-muted-foreground border border-border uppercase">
           {slot.statusText}
         </span>
       </div>
@@ -27,10 +29,10 @@ export function MetricCard({ slot }: MetricCardProps): React.JSX.Element {
       <div className="mt-3">
         {slot.isAwaitingData || slot.value === null ? (
           <div className="space-y-1">
-            <div className="text-xl font-mono text-muted-foreground/60 tracking-wider">
+            <div className="text-xl  text-muted-foreground/60 tracking-wider">
               --
             </div>
-            <div className="text-[11px] font-mono text-muted-foreground/80">
+            <div className="text-[11px]  text-muted-foreground/80">
               Awaiting data stream
             </div>
           </div>
@@ -39,7 +41,7 @@ export function MetricCard({ slot }: MetricCardProps): React.JSX.Element {
             <span className={TYPOGRAPHY.metricValue}>{slot.value}</span>
             {slot.change && (
               <span
-                className={`text-xs font-mono font-medium tabular-nums ${directionClasses.text}`}
+                className={`text-xs  font-medium tabular-nums ${directionClasses.text}`}
               >
                 {slot.direction === "up" && "▲ "}
                 {slot.direction === "down" && "▼ "}

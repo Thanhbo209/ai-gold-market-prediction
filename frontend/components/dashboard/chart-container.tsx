@@ -5,7 +5,15 @@ export interface ChartContainerProps {
   readonly activeRange?: TimeRange;
 }
 
-const TIME_RANGES: readonly TimeRange[] = ["1H", "24H", "7D", "30D", "90D", "1Y", "ALL"];
+const TIME_RANGES: readonly TimeRange[] = [
+  "1H",
+  "24H",
+  "7D",
+  "30D",
+  "90D",
+  "1Y",
+  "ALL",
+];
 
 export function ChartContainer({
   activeRange = "24H",
@@ -20,7 +28,8 @@ export function ChartContainer({
         <div>
           <h2 className={TYPOGRAPHY.cardTitle}>Price & Trajectory Forecast</h2>
           <p className={TYPOGRAPHY.cardDescription}>
-            Historical gold spot price (XAU/USD) with ML predicted confidence cone
+            Historical gold spot price (XAU/USD) with ML predicted confidence
+            cone
           </p>
         </div>
 
@@ -36,7 +45,7 @@ export function ChartContainer({
               <button
                 key={range}
                 type="button"
-                className={`px-2.5 py-1 text-xs font-mono font-medium transition-colors border-r border-border last:border-r-0 cursor-pointer ${
+                className={`px-2.5 py-1 text-xs font-medium transition-colors border-r border-border last:border-r-0 cursor-pointer ${
                   isActive
                     ? "bg-foreground text-background font-semibold"
                     : "text-muted-foreground hover:text-foreground hover:bg-muted"
@@ -51,17 +60,17 @@ export function ChartContainer({
       </div>
 
       {/* Chart Area Container (Structural Placeholder awaiting Chart Library) */}
-      <div className="flex-1 min-h-[320px] md:min-h-[380px] mt-4 border border-dashed border-border/80 bg-muted/10 flex flex-col items-center justify-center p-6 text-center">
+      <div className="flex-1 min-h-80 md:min-h-95 mt-4 border border-dashed border-border/80 bg-muted/10 flex flex-col items-center justify-center p-6 text-center">
         <div className="max-w-md space-y-2">
-          <div className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground/70">
+          <div className="text-[11px]  uppercase tracking-widest text-muted-foreground/70">
             Visualization Viewport
           </div>
           <h3 className="text-sm font-semibold text-foreground tracking-tight">
             Market Chart Container
           </h3>
           <p className={TYPOGRAPHY.cardDescription}>
-            Chart integration point prepared for real-time candlestick and forecast trajectory
-            rendering. Live data stream connection pending.
+            Chart integration point prepared for real-time candlestick and
+            forecast trajectory rendering. Live data stream connection pending.
           </p>
         </div>
       </div>

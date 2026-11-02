@@ -17,19 +17,21 @@ export function PredictionTable({
       {/* Table Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 mb-3 border-b border-border/70">
         <div>
-          <h2 className={TYPOGRAPHY.cardTitle}>Inference & Prediction History</h2>
+          <h2 className={TYPOGRAPHY.cardTitle}>
+            Inference & Prediction History
+          </h2>
           <p className={TYPOGRAPHY.cardDescription}>
             Audit log of generated model forecasts and validation statuses
           </p>
         </div>
-        <div className="text-xs font-mono text-muted-foreground">
+        <div className="text-xs text-muted-foreground">
           Showing {records.length} records
         </div>
       </div>
 
       {/* Semantic Table Container */}
       <div className="overflow-x-auto">
-        <table className="w-full text-left text-xs font-mono border-collapse">
+        <table className="w-full text-left text-xs border-collapse">
           <thead>
             <tr className="border-b border-border bg-muted/40 text-muted-foreground uppercase text-[11px] tracking-wider">
               <th scope="col" className="py-2.5 px-3 font-semibold">
@@ -58,13 +60,17 @@ export function PredictionTable({
           <tbody className="divide-y divide-border/60">
             {records.length === 0 ? (
               <tr>
-                <td colSpan={7} className="py-8 text-center text-muted-foreground">
+                <td
+                  colSpan={7}
+                  className="py-8 text-center text-muted-foreground"
+                >
                   <div className="space-y-1">
                     <p className="font-semibold text-foreground text-xs">
                       No predictions logged yet
                     </p>
                     <p className="text-[11px] text-muted-foreground">
-                      Inference records will appear here as models run scheduled forecasts.
+                      Inference records will appear here as models run scheduled
+                      forecasts.
                     </p>
                   </div>
                 </td>
