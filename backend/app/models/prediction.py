@@ -19,6 +19,7 @@ from app.db.base import Base
 
 class Prediction(Base):
     """A generated gold market direction prediction."""
+
     __tablename__ = "predictions"
     __table_args__ = (
         CheckConstraint(
